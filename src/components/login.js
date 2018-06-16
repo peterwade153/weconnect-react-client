@@ -10,6 +10,7 @@ class Login extends React.Component{
         this.state = {
             email:"",
             password:"",
+            Token:"",
             isAuthenticated: false
         };
         this.onSubmit = this.onSubmit.bind(this);
@@ -31,16 +32,21 @@ class Login extends React.Component{
             password:this.state.password
         })
         .then(response =>{
-            this.setState({isAuthenticated:true});
+            window.localStorage.setItem('Token', response.data.Token);
+
+            this.setState({
+                isAuthenticated : true,
+                Token : Response.data.Token
+            });
             // redirect to homepage
-            this.props.history.push("/");
+            this.props.history.push("/addbusiness");
 
             //pass message login success
             toast.success(response.data.Message);
         })
-        .catch(response =>{
+        .catch(response => {
             //pass failure message
-            toast.error("Login failed");
+            toast.error(response.status);
         })
     };
     render(){
