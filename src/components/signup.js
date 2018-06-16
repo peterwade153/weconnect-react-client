@@ -36,7 +36,7 @@ class Signup extends React.Component{
         })
         .then(response => {
             this.setState({ registered: true});
-            // redirect to login after registration
+            // redirect to home after login
             this.props.history.push("/");
 
             // pass message to user 
@@ -66,7 +66,7 @@ class Signup extends React.Component{
                         <div className="container-fluid" style={{paddingTop:"2%"}}>
                             <div className="row">
                                 <div className="col-md-5" style={{margin:'auto'}}>
-                                    <h3 className="text-dark text-center">Register Here</h3>
+                                    <h3 className="text-dark text-center font-weight-bold">Create Account </h3>
                                     <div className="form-group">
                                         <label className="text-dark">Username: </label>
                                         <div className="input-group">
@@ -104,7 +104,7 @@ class Signup extends React.Component{
                                            <button type="submit" name="submit" id="submit" value="submit" className="btn btn-secondary">SignUp</button>
                                         </div>
                                        <br />
-                                       <p className="text-dark text-center">Already have an account? &nbsp; <Link to="/login" >Login</Link></p>
+                                       <p className="text-dark text-center">Already have an account?&nbsp;<Link to="/" >Login</Link></p>
                                    </div>
                             </div>
                         </div>

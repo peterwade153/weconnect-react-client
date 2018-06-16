@@ -47,7 +47,7 @@ class Login extends React.Component{
 
         return(
             <div>
-                 <ToastContainer   hideProgressBar={true} autoClose={50000} position="top-right" pauseOnHover />
+                 <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
                 <nav className="navbar navbar-light navbar-toggleable-md bg-dark">
                    <span className="navbar-text" style={{marginLeft:'10%'}}>
                         <h2 className="text-light">WeConnect</h2><span className="text-light">Bringing your business closer to people</span>
@@ -59,7 +59,7 @@ class Login extends React.Component{
                         <div className="container-fluid" style={{paddingTop:"2%"}}>
                             <div className="row">
                                 <div className="col-md-5" style={{margin:'auto'}}>
-                                    <h3 className="text-dark text-center">Login</h3>
+                                    <h3 className="text-dark text-center font-weight-bold">Login</h3>
                                     <div className="form-group">
                                         <label>Email: </label>
                                         <div className="input-group">
@@ -86,7 +86,7 @@ class Login extends React.Component{
                                            <button type="submit" name="submit" id="submit" value="submit" className="btn btn-secondary">Login</button>
                                         </div>
                                        <br />
-                                       <p className="text-dark text-center">Already have an account? &nbsp; <Link to="/" >SignUp</Link></p>
+                                       <p className="text-dark text-center">Have no account?&nbsp; <Link to="/signup" >SignUp</Link></p>
                                    </div>
                             </div>
                         </div>
