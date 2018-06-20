@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 class Navbar extends React.Component{
 
@@ -7,16 +9,16 @@ render(){
         <div>
            <nav className="navbar navbar-expand-sm navbar-custom bg-dark">
                 <h2 className="navbar-brand text-light">WeConnect</h2>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
-                    <i class="fa fa-bars fa-lg py-1 text-white"></i>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
+                    <i className="fa fa-bars fa-lg py-1 text-white"></i>
                 </button>
-                <div class="navbar-collapse collapse" id="navbarCustom">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link btn btn-outline-secondary" style={{marginLeft:'1%'}} href="/businesses">Businesses</a>
+                <div className="navbar-collapse collapse" id="navbarCustom">
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <a className="nav-link btn btn-outline-secondary" style={{marginLeft:'1%'}} href="/businesses">Businesses</a>
                         </li>
-                        <li class="nav-item "  style={{paddingLeft:'2%'}}>
-                            <a class="nav-link btn btn-outline-secondary" href="/reviews">Reviews</a>
+                        <li className="nav-item "  style={{paddingLeft:'2%'}}>
+                            <a className="nav-link btn btn-outline-secondary" href="/reviews">Reviews</a>
                         </li>
                     </ul>
                     <form className="form-inline" action="" style={{marginLeft:'52%'}}>
@@ -27,7 +29,7 @@ render(){
                 <div className="btn-group">
                 <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" style={{marginRight:'5%'}} ><i className="fa fa-user fa-fw "/></button>
                 <div className="dropdown-menu">
-                    <a className="dropdown-item" href="/logout">Logout</a>
+                    <Link to="/logout">Logout</Link>
                 </div>
                 </div>
             </nav>
@@ -37,4 +39,4 @@ render(){
     }
  }
 
- export default Navbar
+ export default Navbar;

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import instance from "../config";
 import Navbar from "./navbar";
@@ -11,7 +12,7 @@ import Navbar from "./navbar";
             business_name:"",
             location:"",
             category:"",
-            authenticated : window.localStorage.getItem('Token')
+            authenticated : localStorage.getItem('Token')
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -29,32 +30,36 @@ import Navbar from "./navbar";
         instance.post("/businesses",{
             business_name: this.state.business_name,
             location: this.state.location,
-            category: this.state.category
+            category: this.state.category,
         })
         .then(response => {
-            this.setState({registered:true})
+            // this.setState({authenticated : true})
             // redirect to businesses
-            this.props.history("/")
+            this.props.history.push("/addbusiness")
             // pass message to user 
             toast.success(response.data.Message);
         })
-        .catch(err => {
+        .catch(error => {
             // pass error message
-            toast.error(err.response.data.Message);
+            console.log(error)
+            // toast.error(err.response.data.Message);
         })
     };
 
     render(){
         //extracting data from the object, using destructuring
-        const{business_name, location, category } = this.state;
-
+        const{business_name, location, category, authenticated } = this.state;
+        // block unauthorised users
+        if (!authenticated){
+            return <Redirect to = '/' />;
+        }
         return(
             <div>
                 <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
                 <Navbar />
                 <div>
-                    <form style={{margin: "auto"}} onsubmit={this.onSubmit}>
-                        <div className="container-fluid" style={{paddingTop:"2%"}}>
+                    <form style={{margin: "auto"}} onSubmit={this.onSubmit}>
+                        <div className="container-flud" style={{paddingTop:"2%"}}>
                         <div className="row">
                             <div className="col-md-5" style={{margin: "auto"}}>
                             <h3 className="text-dark text-center">Register Business</h3>
@@ -88,7 +93,7 @@ import Navbar from "./navbar";
                                     <i className="fa fa-bookmark fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.Category} name="category" className="form-control"  onchange={e=> this.onChange(e)}  placeholder="Enter Category" />
+                                <input value={this.state.Category} name="category" className="form-control"  onChange={e=> this.onChange(e)}  placeholder="Enter Category" />
                                 </div>
                                 <br />
                                 <div className="text-center">
