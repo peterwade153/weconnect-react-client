@@ -1,13 +1,19 @@
 import React from 'react';
 
- class Business extends React.Component{
+import Navbar from './navbar';
+
+class Business extends React.Component{
 
 render(){
     return(
         <div>
+            <Navbar />
+           
         </div>
+
     );
-}
+    }
  }
 
  export default Business
+ 

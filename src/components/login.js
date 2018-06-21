@@ -8,46 +8,53 @@ class Login extends React.Component{
         super(props);
         //initial state
         this.state = {
-            email:"",
-            password:"",
-            isAuthenticated: false
+            email : "",
+            password : "",
+            Token : "",
+            authenticated : false
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
     //change event
-    onChange = e =>{
+    onChange = e => {
         this.setState({
-   	        [e.target.name]:e.target.value
+   	        [e.target.name] : e.target.value
         })
     };
     // submit event
-    onSubmit = e =>{
+    onSubmit = e => {
         e.preventDefault();
 
         instance.post("/auth/login",{
-            email:this.state.email,
-            password:this.state.password
+            email : this.state.email,
+            password : this.state.password
         })
         .then(response =>{
-            this.setState({isAuthenticated:true});
+            localStorage.setItem('Token', response.data.Token);
+
+            this.setState({
+                authenticated : true,
+                Token : response.data.Token
+            });
             // redirect to homepage
-            this.props.history.push("/");
+            this.props.history.push("/addbusiness");
 
             //pass message login success
             toast.success(response.data.Message);
         })
-        .catch(response =>{
+        .catch(error => {
             //pass failure message
-            toast.error("Login failed");
+            toast.error("Login Failed!");
+            
         })
     };
     render(){
 
         return(
             <div>
-                 <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
+                <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
                 <nav className="navbar navbar-light navbar-toggleable-md bg-dark">
                    <span className="navbar-text" style={{marginLeft:'10%'}}>
                         <h2 className="text-light">WeConnect</h2><span className="text-light">Bringing your business closer to people</span>

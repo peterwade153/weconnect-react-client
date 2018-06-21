@@ -1,6 +1,8 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import instance from "../config";
+import Navbar from "./navbar";
 
  class CreateBusiness extends React.Component{
     constructor(props){
@@ -10,67 +12,57 @@ import instance from "../config";
             business_name:"",
             location:"",
             category:"",
-            registered:false
+            authenticated : localStorage.getItem('Token')
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+
     }
     
-    onChange = e =>{
+    onChange = e => {
         this.setState({
             [e.target.name]:e.target.value
         })
     };
 
-    onSubmit = e =>{
+    onSubmit = e => {
         e.preventDefault();
         instance.post("/businesses",{
             business_name: this.state.business_name,
             location: this.state.location,
-            category: this.state.category
+            category: this.state.category,
         })
-        .then(response =>{
-            this.setState({registered:true})
+        .then(response => {
+            // this.setState({authenticated : true})
             // redirect to businesses
-            this.props.history("/")
+            this.props.history.push("/addbusiness")
             // pass message to user 
             toast.success(response.data.Message);
         })
-        .catch(err =>{
+        .catch(error => {
             // pass error message
-            toast.error(err.data.Message);
+            console.log(error)
+            // toast.error(err.response.data.Message);
         })
     };
 
     render(){
         //extracting data from the object, using destructuring
-        const{business_name, location, category } = this.state;
-
+        const{business_name, location, category, authenticated } = this.state;
+        // block unauthorised users
+        if (!authenticated){
+            return <Redirect to = '/' />;
+        }
         return(
             <div>
                 <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
-
-                <nav className="navbar navbar-light navbar-toggleable-md bg-dark">
-                   <span className="navbar-text" style={{marginLeft:'10%'}}>
-                        <h2 className="text-light">WeConnect</h2><span className="text-light">Bringing your business closer to people</span>
-                    </span>
-                     <ul className="navbar nav justify-content-end">
-                        <li className="nav-item">
-                            <h4><a className="nav-link text-light" >Businesses</a></h4>
-                         </li>
-                        <li className="nav-item">
-                             <h4><a className="nav-link text-light" >Reviews</a></h4>
-                         </li>
-                     </ul>
-                </nav>
-                <br />
+                <Navbar />
                 <div>
-                    <form style={{margin: "auto"}} onsubmit="{this.onSubmit}">
-                        <div className="container-fluid" style={{paddingTop:"2%"}}>
+                    <form style={{margin: "auto"}} onSubmit={this.onSubmit}>
+                        <div className="container-flud" style={{paddingTop:"2%"}}>
                         <div className="row">
                             <div className="col-md-5" style={{margin: "auto"}}>
-                            <h3 className="text-dark text-center">Register Business Here</h3>
-                           
+                            <h3 className="text-dark text-center">Register Business</h3>
                             <div className="form-group">
                                 <label className="text-dark">Business Name: </label>
                                 <div className="input-group">
@@ -79,19 +71,18 @@ import instance from "../config";
                                     <i className="fa fa-archive fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.business_name} name="business_name" onchange={e => this.onChange(e)} className="form-control"  placeholder="Enter Business Name" />
+                                <input value={this.state.business_name} name="business_name" className="form-control" onChange={e => this.onChange(e)} placeholder="Enter Business Name" />
                                 </div>
-                           
                             </div>
                             <div className="form-group">
-                                <label>Location: </label>
+                                <label className="text-dark">Location: </label>
                                 <div className="input-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">
                                     <i className="fa fa-map-marker fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.location} name="location" className="form-control" onchange={e => this.onChange(e)} placeholder="Business Location" />
+                                <input value={this.state.location} name="location" className="form-control" onChange={e => this.onChange(e)} placeholder="Business Location" />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -102,7 +93,7 @@ import instance from "../config";
                                     <i className="fa fa-bookmark fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.Category} name="category" onchange={e=> this.onChange(e)} className="form-control"  placeholder="Enter Category" />
+                                <input value={this.state.Category} name="category" className="form-control"  onChange={e=> this.onChange(e)}  placeholder="Enter Category" />
                                 </div>
                                 <br />
                                 <div className="text-center">
@@ -110,8 +101,8 @@ import instance from "../config";
                                 </div>
                                 <br />
                             </div>
-                            </div>
                         </div>
+                    </div>
                         </div>
                 </form>
             </div>
