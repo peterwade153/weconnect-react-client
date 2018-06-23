@@ -104,7 +104,7 @@ class Signup extends React.Component{
                                            <button type="submit" name="submit" id="submit" value="submit" className="btn btn-secondary">SignUp</button>
                                         </div>
                                        <br />
-                                       <p className="text-dark text-center">Already have an account?&nbsp;<Link to="/" >Login</Link></p>
+                                       <p className="text-dark text-center">Already have an account?&nbsp;<Link className="btn btn-sm btn-outline-secondary" to="/" >Login</Link></p>
                                    </div>
                             </div>
                         </div>

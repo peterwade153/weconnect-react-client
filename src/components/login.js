@@ -93,7 +93,7 @@ class Login extends React.Component{
                                            <button type="submit" name="submit" id="submit" value="submit" className="btn btn-secondary">Login</button>
                                         </div>
                                        <br />
-                                       <p className="text-dark text-center">Have no account?&nbsp; <Link to="/signup" >SignUp</Link></p>
+                                       <p className="text-dark text-center" >Have no account?&nbsp; <Link className="btn btn-sm btn-outline-secondary" to="/signup" >SignUp</Link></p>
                                    </div>
                             </div>
                         </div>
