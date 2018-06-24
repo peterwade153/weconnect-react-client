@@ -1,8 +1,8 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Router} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import instance from "../config";
-import Navbar from "./navbar";
+import instance from "../../config";
+import Navbar from "../navbar";
 
  class ResetPassword extends React.Component{
     constructor(props){
@@ -13,9 +13,6 @@ import Navbar from "./navbar";
             new_password:"",
             authenticated : localStorage.getItem('Token')
         };
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-
     }
     
     onChange = e => {
@@ -31,23 +28,20 @@ import Navbar from "./navbar";
             new_password: this.state.new_password,
         })
         .then(response => {
-            // redirect to businesses
-            this.props.history.push("/addbusiness")
+            this.props.history.push("/businesses")
             // pass message to user 
             toast.success(response.data.Message);
         })
         .catch(error => {
-            // pass error message
             toast.error("action failed");
         })
     };
 
     render(){
-        //extracting data from the object, using destructuring
         const{email, new_password, authenticated } = this.state;
         // block unauthorised users
         if (!authenticated){
-            return <Redirect to = '/' />;
+            return <Router><Redirect to = '/' /></Router>;
         }
         return(
             <div>
@@ -64,10 +58,11 @@ import Navbar from "./navbar";
                                 <div className="input-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">
-                                    <i className="fa fa-archive fa-fw" />
+                                    <i className="fa fa-envelope fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.email} name="email" className="form-control" onChange={e => this.onChange(e)} placeholder="Enter Email address" />
+                                <input value={email} name="email" id="email" className="form-control" 
+                                onChange={e => this.onChange(e)} placeholder="Enter Email address" />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -75,10 +70,11 @@ import Navbar from "./navbar";
                                 <div className="input-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">
-                                    <i className="fa fa-bookmark fa-fw" />
+                                    <i className="fa fa-lock fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.new_password} name="new_password" className="form-control"  onChange={e=> this.onChange(e)}  placeholder="Enter New password" />
+                                <input value={new_password} name="new_password" id="new_password" className="form-control"  
+                                onChange={e=> this.onChange(e)}  placeholder="Enter New password" />
                                 </div>
                                 <br />
                                 <div className="text-center">

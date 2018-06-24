@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
     componentDidMount(){
         localStorage.removeItem('Token')
+        localStorage.removeItem('user_id')
         // redirect back to login
         this.props.history.push('/');
         toast.success("Logged out Successfully");
