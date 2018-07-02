@@ -1,14 +1,14 @@
 
 import  React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-import Signup from "./components/auth/Signup";
-import Login from "./components/auth/Login";
-import Logout from "./components/auth/Logout";
-import CreateBusiness from "./components/business/CreateBusiness";
-import Business from "./components/business/Business";
-import BusinessView from "./components/business/BusinessView";
-import ResetPassword from "./components/auth/ResetPassword";
-import EditBusiness from "./components/business/EditBusiness";
+import Signup from "./components/Auth/Signup";
+import Login from "./components/Auth/Login";
+import Logout from "./components/Auth/Logout";
+import CreateBusiness from "./components/Business/CreateBusiness";
+import Business from "./components/Business/BusinessList";
+import BusinessView from "./components/Business/Business";
+import ResetPassword from "./components/Auth/ResetPassword";
+import EditBusiness from "./components/Business/EditBusiness";
 import "react-toastify/dist/ReactToastify.css";
 
 

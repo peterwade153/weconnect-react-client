@@ -3,6 +3,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import instance from "../../config";
 
+/**
+ * Form for user signup
+ *
+ */
+
 class Signup extends React.Component{
     constructor(props){
         super(props);

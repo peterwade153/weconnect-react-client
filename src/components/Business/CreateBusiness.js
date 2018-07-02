@@ -3,7 +3,13 @@ import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast } from 'react-toastify';
 import instance from "../../config";
-import Navbar from "../Navbar";
+import Navbar from "../Layout/Navbar";
+import Footer from "../Layout/Footer";
+
+/**
+ * Form for registering a business
+ *
+ */
 
  class CreateBusiness extends React.Component{
     constructor(props){
@@ -16,13 +22,11 @@ import Navbar from "../Navbar";
             authenticated : localStorage.getItem('Token')
         };
     }
-    
     onChange = e => {
         this.setState({
             [e.target.name]:e.target.value
         })
     };
-
     onSubmit = e => {
         e.preventDefault();
         instance.post("/businesses",{
@@ -106,6 +110,7 @@ import Navbar from "../Navbar";
                     </div>
             </form>
         </div>
+        <Footer />
        </div>
         );
     }

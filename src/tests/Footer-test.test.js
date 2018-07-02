@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Footer from '../components/Footer';
+import Footer from '../components/Layout/Footer';
 
 describe("Footer component", () =>{
 
@@ -10,8 +10,8 @@ describe("Footer component", () =>{
       });
     it("should render text", () => {
         const wrapper = (shallow(<Footer />));
-        const title = <footer className="navbar navbar-fixed-bottom bg-dark text-light"> &copy; Copyright 2018 Weconnect INC</footer>
-        expect(wrapper.contains(title)).toEqual(true);
+        const text = <footer className="text-dark" style={{ marginLeft:"40%"}} > &copy; Copyright 2018 Weconnect INC</footer>
+        expect(wrapper.contains(text)).toEqual(true);
     })
 
 });

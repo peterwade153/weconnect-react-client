@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Business from '../components/Business/Business';
+import Business from '../components/Business/BusinessList';
 
 describe("View business", () =>{
     const wrapper = (shallow (<Business match={{params: {id: 1}}}/>));

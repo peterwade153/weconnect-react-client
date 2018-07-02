@@ -2,7 +2,13 @@ import React from 'react';
 import {Redirect, Router} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import instance from "../../config";
-import Navbar from "../Navbar";
+import Navbar from "../Layout/Navbar";
+import Footer from "../Layout/Footer";
+
+/**
+ * Form for user password reset
+ *
+ */
 
  class ResetPassword extends React.Component{
     constructor(props){
@@ -14,7 +20,6 @@ import Navbar from "../Navbar";
             authenticated : localStorage.getItem('Token')
         };
     }
-    
     onChange = e => {
         this.setState({
             [e.target.name]:e.target.value
@@ -61,7 +66,7 @@ import Navbar from "../Navbar";
                                     <i className="fa fa-envelope fa-fw" />
                                     </span>
                                 </div>
-                                <input value={email} name="email" id="email" className="form-control" 
+                                <input value={email} name="email" id="email" className="form-control" type="email"
                                 onChange={e => this.onChange(e)} placeholder="Enter Email address" />
                                 </div>
                             </div>
@@ -73,7 +78,7 @@ import Navbar from "../Navbar";
                                     <i className="fa fa-lock fa-fw" />
                                     </span>
                                 </div>
-                                <input value={new_password} name="new_password" id="new_password" className="form-control"  
+                                <input value={new_password} name="new_password" id="new_password" className="form-control" type="password"
                                 onChange={e=> this.onChange(e)}  placeholder="Enter New password" />
                                 </div>
                                 <br />
@@ -87,6 +92,7 @@ import Navbar from "../Navbar";
                     </div>
                 </form>
             </div>
+            <Footer />
        </div>
         );
     }
