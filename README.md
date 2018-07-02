@@ -1,5 +1,7 @@
 # WeConnect-React Application
 ---
+[![Build Status](https://travis-ci.org/peterwade153/weconnect-react-client.svg?branch=develop)](https://travis-ci.org/peterwade153/weconnect-react-client)
+[![Coverage Status](https://coveralls.io/repos/github/peterwade153/weconnect-react-client/badge.svg?branch=develop)](https://coveralls.io/github/peterwade153/weconnect-react-client?branch=develop)
 ## Description
 WeConnect provides a platform that brings businesses and individuals together. This platform 
 creates awareness for businesses and gives the users the ability to write reviews about the 
