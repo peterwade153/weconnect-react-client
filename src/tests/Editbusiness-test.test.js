@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MockAdapter from 'axios-mock-adapter';
 
-import EditBusiness from '../components/business/editbusiness';
+import EditBusiness from '../components/business/EditBusiness';
 
 describe("edit business", () =>{
     const wrapper = (shallow (< EditBusiness />));

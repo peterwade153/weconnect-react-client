@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast } from 'react-toastify';
 import instance from "../../config";
-import Navbar from "../navbar";
+import Navbar from "../Navbar";
 
  class CreateBusiness extends React.Component{
     constructor(props){

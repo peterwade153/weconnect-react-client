@@ -4,8 +4,8 @@ import Pagination from 'rc-pagination';
 import { ToastContainer, toast } from 'react-toastify';
 import { LineSpinFadeLoader } from 'react-pure-loaders';
 import instance from "../../config";
-import Navbar from '../navbar';
-import Footer from '../footer';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 import 'rc-pagination/assets/index.css';
 
 class Business extends React.Component{

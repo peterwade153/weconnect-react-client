@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import BusinessView from '../components/business/businessview';
+import BusinessView from '../components/business/BusinessView';
 
 describe("View business", () =>{
     const wrapper = (shallow (< BusinessView />));

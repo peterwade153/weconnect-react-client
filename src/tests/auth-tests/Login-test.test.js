@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import MockAdapter from 'axios-mock-adapter';
 
 
-import Login from '../../components/auth/login';
+import Login from '../../components/auth/Login';
 
 describe( "Login Component", () => {
     const wrapper = (shallow(<Login />));

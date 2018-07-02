@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MockAdapter from 'axios-mock-adapter';
 
-import CreateBusiness from '../components/business/createbusiness';
+import CreateBusiness from '../components/business/CreateBusiness';
 
 describe("Businness name, category and location input", () =>{
     const wrapper = (shallow (< CreateBusiness />));

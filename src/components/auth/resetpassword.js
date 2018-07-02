@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Router} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import instance from "../../config";
-import Navbar from "../navbar";
+import Navbar from "../Navbar";
 
  class ResetPassword extends React.Component{
     constructor(props){

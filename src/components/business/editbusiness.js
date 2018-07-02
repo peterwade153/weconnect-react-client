@@ -3,7 +3,7 @@ import {Redirect, Link} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { LineSpinFadeLoader } from 'react-pure-loaders';
 import instance from "../../config";
-import Navbar from '../navbar';
+import Navbar from '../Navbar';
 
 
 class EditBusiness extends React.Component{

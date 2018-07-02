@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MockAdapter from 'axios-mock-adapter';
 
-import Signup from '../../components/auth/signup';
+import Signup from '../../components/auth/Signup';
 
 describe( "Signup Component", () => {
     it("should render signup form title", () =>{

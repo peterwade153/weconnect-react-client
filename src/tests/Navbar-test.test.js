@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Link } from "react-router-dom";
 
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 
 describe("Navbar component", () =>{
     it("should render title", () => {

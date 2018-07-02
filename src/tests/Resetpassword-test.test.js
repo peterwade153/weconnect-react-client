@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MockAdapter from 'axios-mock-adapter';
 
-import ResetPassword from "../components/auth/resetpassword";
+import ResetPassword from "../components/auth/ResetPassword";
 
 describe( "Resetpassword Component", () => {
     const wrapper = (shallow(< ResetPassword />));
