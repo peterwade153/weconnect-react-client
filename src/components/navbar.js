@@ -17,15 +17,8 @@ render(){
                         <li className="nav-item active">
                             <a className="nav-link btn btn-outline-light" style={{marginLeft:'1%'}} href="/businesses">Businesses</a>
                         </li>
-                        <li className="nav-item "  style={{paddingLeft:'2%'}}>
-                            <a className="nav-link btn btn-outline-light" href="/reviews">Reviews</a>
-                        </li>
                     </ul>
-                    <form className="form-inline" action="" style={{marginLeft:'50%'}}>
-                        <input className="form-control"  type="text" name="search" placeholder="search" />
-                        <button className="btn btn-outline-light" type="submit">Search</button>
-                    </form>
-                    <div className="btn-group" >
+                    <div className="btn-group ml-auto" >
                 <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" style={{marginRight:'5%'}} ><i className="fa fa-user fa-fw "/></button>
                 <div className="dropdown-menu" >
                     <Link to="/logout">Logout</Link>

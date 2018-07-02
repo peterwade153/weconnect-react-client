@@ -1,68 +1,97 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import instance from "../config";
-import Navbar from "./navbar";
+import { LineSpinFadeLoader } from 'react-pure-loaders';
+import instance from "../../config";
+import Navbar from '../navbar';
 
- class CreateBusiness extends React.Component{
+
+class EditBusiness extends React.Component{
     constructor(props){
         super(props);
-        //initial states
         this.state = {
             business_name:"",
             location:"",
             category:"",
-            authenticated : localStorage.getItem('Token')
+            authenticated : localStorage.getItem('Token'),
+            loading:false
         };
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-
     }
-    
+    componentDidMount(){
+        this.setState({loading:true});
+        let id = this.props.match.params.id;
+        instance.get(`/businesses/${id}`)
+        .then(response => {
+            this.setState({
+                business_name : response.data.Business.business_name,
+                location : response.data.Business.location,
+                category : response.data.Business.category,
+                loading:false
+            });
+        })
+        .catch(error => {});
+    }
     onChange = e => {
         this.setState({
             [e.target.name]:e.target.value
         })
     };
-
     onSubmit = e => {
+        this.setState({loading:true});
         e.preventDefault();
-        instance.post("/businesses",{
+        let id = this.props.match.params.id;
+        instance.put(`/businesses/${id}`,{
             business_name: this.state.business_name,
             location: this.state.location,
             category: this.state.category,
+            loading:false
         })
         .then(response => {
-            // this.setState({authenticated : true})
             // redirect to businesses
-            this.props.history.push("/addbusiness")
-            // pass message to user 
+            this.props.history.push("/businesses")
             toast.success(response.data.Message);
         })
         .catch(error => {
-            // pass error message
-            console.log(error)
-            // toast.error(err.response.data.Message);
+            toast.error("action failed");
         })
     };
 
     render(){
-        //extracting data from the object, using destructuring
-        const{business_name, location, category, authenticated } = this.state;
+        const{ authenticated, business_name, location, category, loading } = this.state;
         // block unauthorised users
         if (!authenticated){
             return <Redirect to = '/' />;
         }
+        else if(authenticated && loading){
+            return (
+                <div>
+            <Navbar />
+                <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
+                    <LineSpinFadeLoader
+                    color={'#A9A9A9'}
+                    loading={this.state.loading}
+                    />
+               </div>
+          </div>
+              ); 
+        }
         return(
             <div>
-                <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
+                <ToastContainer   hideProgressBar={true} 
+                                  autoClose={5000} 
+                                  position="top-right" 
+                                  pauseOnHover />
                 <Navbar />
+                <div className="row" style={{padding:"0.5%"}}>
+                <Link to="/businesses" className="btn btn-secondary btn-sm" style={{marginLeft:"10%"}}>
+                    <i className="fa fa-arrow-left fa-lg"></i> Back</Link>
+            </div>
                 <div>
                     <form style={{margin: "auto"}} onSubmit={this.onSubmit}>
                         <div className="container-flud" style={{paddingTop:"2%"}}>
                         <div className="row">
                             <div className="col-md-5" style={{margin: "auto"}}>
-                            <h3 className="text-dark text-center">Register Business</h3>
+                            <h3 className="text-dark text-center">Edit Business</h3>
                             <div className="form-group">
                                 <label className="text-dark">Business Name: </label>
                                 <div className="input-group">
@@ -71,7 +100,8 @@ import Navbar from "./navbar";
                                     <i className="fa fa-archive fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.business_name} name="business_name" className="form-control" onChange={e => this.onChange(e)} placeholder="Enter Business Name" />
+                                <input value={business_name} name="business_name" className="form-control" 
+                                onChange={e => this.onChange(e)} placeholder="Enter Business Name" />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -82,7 +112,8 @@ import Navbar from "./navbar";
                                     <i className="fa fa-map-marker fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.location} name="location" className="form-control" onChange={e => this.onChange(e)} placeholder="Business Location" />
+                                <input value={location} name="location" className="form-control" 
+                                onChange={e => this.onChange(e)} placeholder="Business Location" />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -93,11 +124,13 @@ import Navbar from "./navbar";
                                     <i className="fa fa-bookmark fa-fw" />
                                     </span>
                                 </div>
-                                <input value={this.state.Category} name="category" className="form-control"  onChange={e=> this.onChange(e)}  placeholder="Enter Category" />
+                                <input value={category} name="category" className="form-control"  
+                                onChange={e=> this.onChange(e)}  placeholder="Enter Category" />
                                 </div>
                                 <br />
                                 <div className="text-center">
-                                <button type="submit" name="submit" id="submit" value="submit" className="btn btn-secondary">Register</button>
+                                <button type="submit" name="submit" id="submit" value="submit" 
+                                    className="btn btn-secondary">Edit Business</button>
                                 </div>
                                 <br />
                             </div>
@@ -110,4 +143,5 @@ import Navbar from "./navbar";
         );
     }
 }
-export default CreateBusiness
+export default EditBusiness
+
