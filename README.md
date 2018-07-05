@@ -32,12 +32,17 @@ Install required packages
 <pre>
 $ npm install
 </pre>
+To set a Base URL
+<pre>
+- Edit baseURL in the config.js file in the src folder 
+</pre>
 To start the application
 <pre>
 $ npm start
 </pre>
+To access the application
+[http://localhost:3000/businesses](http://localhost:3000/businesses)
 
 ## Link to Heroku Application
-<pre>
-https://weconnect-2ug.herokuapp.com/
-</pre>
+[https://weconnect-2ug.herokuapp.com/](https://weconnect-2ug.herokuapp.com/)
+
