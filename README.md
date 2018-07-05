@@ -41,6 +41,7 @@ To start the application
 $ npm start
 </pre>
 To access the application
+
 [http://localhost:3000/businesses](http://localhost:3000/businesses)
 
 ## Link to Heroku Application
