@@ -36,6 +36,10 @@ To set a Base URL
 <pre>
 - Edit baseURL in the config.js file in the src folder 
 </pre>
+To run tests
+<pre>
+$ npm run test
+</pre>
 To start the application
 <pre>
 $ npm start
