@@ -40,7 +40,7 @@ To start the application
 <pre>
 $ npm start
 </pre>
-To access the application
+To access the application locally
 
 [http://localhost:3000/businesses](http://localhost:3000/businesses)
 
