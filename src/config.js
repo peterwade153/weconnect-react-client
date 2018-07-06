@@ -2,7 +2,8 @@ import axios from "axios";
 
 //config defaults for instance
 const instance = axios.create({
-    baseURL:"http://127.0.0.1:5000/api/v2/"
+    baseURL:"https://weconect-api.herokuapp.com/"
+    // baseURL:"http://127.0.0.1:5000/api/v2/"
 });
 
 instance.interceptors.request.use((config)=>{

@@ -72,7 +72,7 @@ class Login extends React.Component{
             <br />
                 <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
                 <LineSpinFadeLoader
-                  color={'#A9A9A9'}
+                  color={'#000000'}
                   loading={this.state.loading}
                   radius={10}
                 />

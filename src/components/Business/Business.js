@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { LineSpinFadeLoader } from 'react-pure-loaders';
 import instance from "../../config";
@@ -64,7 +64,6 @@ class BusinessView extends React.Component{
             loading:false
         })
         .then(response => {
-            console.log(response);
             this.props.history.push(`/businesses/${id}`)
             toast.success(response.data.Message);
             // fetching all reviews to include most recent
@@ -113,7 +112,7 @@ render(){
         <ToastContainer  hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
             <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
                 <LineSpinFadeLoader
-                color={'#A9A9A9'}
+                color={'#000000'}
                 loading={loading}
                 radius={10}
                 />
@@ -142,8 +141,8 @@ render(){
                         and review for non business owners */}
                        { business.owner == user_id ? (
                         <div>
-                           <a className="btn btn-secondary btn-sm" href={`/editbusiness/${business.id}`}>
-                           <i className="fa fa-pencil fa-lg"></i> Edit </a> 
+                           <a className="btn btn-secondary btn-sm" style={{marginRight:"1%"}}href={`/editbusiness/${business.id}`}>
+                           <i className="fa fa-pencil fa-lg" ></i> Edit </a> 
                                <a className="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
                            <i className="fa fa-trash-o fa-lg"></i> Delete</a>
                            </div>

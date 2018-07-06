@@ -85,11 +85,11 @@ render(){
     else if(authenticated && loading){
         return (
             <div>
-        <Navbar />
-        <ToastContainer hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
+            <ToastContainer hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
+            <Navbar />
             <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
                 <LineSpinFadeLoader
-                color={'#A9A9A9'}
+                color={'#000000'}
                 loading={this.state.loading}
                 />
            </div>
@@ -97,7 +97,7 @@ render(){
           ); 
     }
     return(
-        <div tyle={{ backgroundImage: 'url(../../static/bckg1.jpeg)' }}>
+        <div>
             <ToastContainer hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
             <Navbar />
             {/* Add business button */}

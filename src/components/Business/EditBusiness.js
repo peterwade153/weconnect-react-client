@@ -72,7 +72,7 @@ class EditBusiness extends React.Component{
             <Navbar />
                 <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
                     <LineSpinFadeLoader
-                    color={'#A9A9A9'}
+                    color={'#000000'}
                     loading={this.state.loading}
                     />
                </div>
@@ -116,7 +116,7 @@ class EditBusiness extends React.Component{
                                     <i className="fa fa-map-marker fa-fw" />
                                     </span>
                                 </div>
-                                <input value={location} name="location" className="form-control" 
+                                <input value={location} name="location" id="location" className="form-control" 
                                 onChange={e => this.onChange(e)} placeholder="Business Location" />
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ class EditBusiness extends React.Component{
                                     <i className="fa fa-bookmark fa-fw" />
                                     </span>
                                 </div>
-                                <input value={category} name="category" className="form-control"  
+                                <input value={category} name="category" id="category" className="form-control"  
                                 onChange={e=> this.onChange(e)}  placeholder="Enter Category" />
                                 </div>
                                 <br />
