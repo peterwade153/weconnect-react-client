@@ -5,9 +5,7 @@ import footer from './Styles/styles.css';
  * Displays footer
  *
  */
-class Footer extends React.Component{
-
-    render(){
+const Footer =()=>{
         return(
             <div>
                <div className={footer}>
@@ -17,6 +15,6 @@ class Footer extends React.Component{
 
 
         );
-    };
-}
+    }
+
 export default Footer

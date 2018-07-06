@@ -64,6 +64,7 @@ class BusinessView extends React.Component{
             loading:false
         })
         .then(response => {
+            console.log(response);
             this.props.history.push(`/businesses/${id}`)
             toast.success(response.data.Message);
             // fetching all reviews to include most recent
@@ -109,7 +110,7 @@ render(){
         return (
             <div>
         <Navbar />
-        <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
+        <ToastContainer  hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
             <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
                 <LineSpinFadeLoader
                 color={'#A9A9A9'}
@@ -125,8 +126,8 @@ render(){
             <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
             <Navbar />
             <div className="row" style={{padding:"0.5%"}}>
-                <Link to="/businesses" className="btn btn-secondary btn-sm" style={{marginLeft:"10%"}}>
-                    <i className="fa fa-arrow-left fa-lg"></i> Back</Link>
+                <a href="/businesses" className="btn btn-secondary btn-sm" style={{marginLeft:"10%"}}>
+                    <i className="fa fa-arrow-left fa-lg"></i> Back</a>
             </div>
            <div  className="col-md-8" style={{margin:'auto'}}>
                 <div className="card" key={business.id} >
@@ -139,8 +140,8 @@ render(){
                         <hr />
                         {/* section for showing either edit and delete for business owners
                         and review for non business owners */}
-                       { business.owner == user_id? (
-                     <div>
+                       { business.owner == user_id ? (
+                        <div>
                            <a className="btn btn-secondary btn-sm" href={`/editbusiness/${business.id}`}>
                            <i className="fa fa-pencil fa-lg"></i> Edit </a> 
                                <a className="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
@@ -151,7 +152,7 @@ render(){
                              <form onSubmit={this.onSubmit}> 
                              <h5 className="card-header font-weight-bold">Add review</h5>   
                                 <div className="form-group" >
-                                    <textarea className="form-control" name="review" value={review} 
+                                    <textarea className="form-control" id="review" name="review" value={review} 
                                     onChange={e => this.onChange(e)} placeholder="Enter review" required />
                                     <button type="submit" name="submit" id="submit" value="submit" className="btn btn-secondary" 
                                     style={{marginTop:"2%"}}>Submit Review</button>

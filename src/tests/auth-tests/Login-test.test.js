@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Link } from "react-router-dom";
 import MockAdapter from 'axios-mock-adapter';
-import { MemoryRouter } from 'react-router'
 
 
 import Login from '../../components/Auth/Login';

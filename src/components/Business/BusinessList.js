@@ -10,6 +10,12 @@ import Search from '../Layout/Search';
 import Cards from './BusinessLayout/BusinessCards';
 import 'rc-pagination/assets/index.css';
 
+/**
+ * Display all businesses
+ * Add business link
+ *
+ */
+
 class Business extends React.Component{
     constructor(props){
         super(props);
@@ -17,7 +23,7 @@ class Business extends React.Component{
             authenticated : localStorage.getItem('Token'),
             user_id :localStorage.getItem('user_id'),
             businesses:[],
-            perpage:8,
+            perpage:6,
             current:1,
             pages :1,
             count:30,
@@ -94,6 +100,7 @@ render(){
         <div tyle={{ backgroundImage: 'url(../../static/bckg1.jpeg)' }}>
             <ToastContainer hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
             <Navbar />
+            {/* Add business button */}
             <div className="row" style={{padding:"0.5%"}}>
                 <div className="col-md-2 " style={{margin:'auto'}}>
                 <Link to="/addbusiness" className="btn btn-dark btn-sm">
@@ -104,12 +111,10 @@ render(){
                 <Search callbackFromBiz={this.searchData}/>
                </div>
             </div>
-
             {/* display businesses */}
             <div className="col-md-10"  >
             <Cards businesslist = {businesses}/>
             </div>
-
         <Pagination 
             onChange={this.onChange} 
             current={current} 
