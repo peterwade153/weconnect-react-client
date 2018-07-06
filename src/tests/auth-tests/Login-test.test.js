@@ -1,13 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Link } from "react-router-dom";
 import MockAdapter from 'axios-mock-adapter';
+import { MemoryRouter } from 'react-router'
 
 
-import Login from '../../components/auth/login';
+import Login from '../../components/Auth/Login';
 
 describe( "Login Component", () => {
-    const wrapper = (shallow(<Login />));
+    const wrapper = shallow(<Login />);
+    it("renders without crashing", () => {
+        shallow(<Login />);
+      });
     it("should render login form", () =>{
         const title = <h3 className="text-dark text-center font-weight-bold">Login</h3>
         expect(wrapper.contains(title)).toEqual(true);
@@ -56,5 +60,5 @@ describe( "Login Component", () => {
 		wrapper.find("#submit").simulate('submit', {
             preventDefault: () => {}
 		});
-	});
- })
+    });
+})

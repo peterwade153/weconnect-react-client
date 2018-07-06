@@ -3,8 +3,15 @@ import {Redirect, Link} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { LineSpinFadeLoader } from 'react-pure-loaders';
 import instance from "../../config";
-import Navbar from '../navbar';
-import Footer from '../footer';
+import Navbar from '../Layout/Navbar';
+import Footer from '../Layout/Footer';
+
+/**
+ * Displays details for a business
+ * and the business reviews
+ * Review are displayed latest first
+ *
+ */
 
 class BusinessView extends React.Component{
     constructor(props){
@@ -19,7 +26,7 @@ class BusinessView extends React.Component{
             loading:false
         }
     };
-
+    // fetching business to display
     componentDidMount(){
         this.setState({loading:true});
         let id = this.props.match.params.id;
@@ -41,6 +48,7 @@ class BusinessView extends React.Component{
             toast.error("Action Failed!");
         });
     }
+    // reviewing business
     onChange = e => {
         this.setState({
             [e.target.name]:e.target.value
@@ -58,7 +66,7 @@ class BusinessView extends React.Component{
         .then(response => {
             this.props.history.push(`/businesses/${id}`)
             toast.success(response.data.Message);
-            // fetch reviews to include currently added review
+            // fetching all reviews to include most recent
             instance.get(`/businesses/${id}/reviews`)
             .then(newresponse =>{
                 this.setState({
@@ -72,7 +80,7 @@ class BusinessView extends React.Component{
             toast.error("Action failed");
         })
     }
-    // deleting a business
+    // // deleting a business
     deleteHandler = (e) =>{
         e.preventDefault();
         this.setState({loading:true});
@@ -101,6 +109,7 @@ render(){
         return (
             <div>
         <Navbar />
+        <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
             <div className="col-md-5" style={{ marginTop:"20%", marginLeft:"40%"}}>
                 <LineSpinFadeLoader
                 color={'#A9A9A9'}
@@ -168,6 +177,7 @@ render(){
                 </div>
             </div>
           {/* Busieness reviews */}
+          <div  style={{backgroundColor:"#DCDCDC"}}>
           <h4 className="card-header font-weight-bold"> Reviews </h4>
                    {reviews.map(review => 
                     <div key={review.id} style={{margin:'auto'}}>
@@ -178,6 +188,7 @@ render(){
                             </ul>
                         </div>
                     )}
+               </div>
                </div>
                
             < Footer />

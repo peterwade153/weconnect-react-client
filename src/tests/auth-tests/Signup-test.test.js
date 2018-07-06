@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import MockAdapter from 'axios-mock-adapter';
+import { MemoryRouter } from 'react-router'
 
-import Signup from '../../components/auth/signup';
+import Signup from '../../components/Auth/Signup';
 
 describe( "Signup Component", () => {
     it("should render signup form title", () =>{
@@ -60,5 +61,25 @@ describe("Email  and password input", () =>{
         preventDefault: () => {}
         });
     });
+
+})
+
+describe("Signup component", () =>{
+    const wrapper = (mount (<MemoryRouter><Signup /></MemoryRouter>));
+    it('It handles submit', async ()=>{
+        const signupComponent = wrapper.find(Signup)
+		let username = signupComponent.find('input[name="username"]')
+		username.simulate('change', {target: {name: "business_name",value: 'roko'}});
+	
+		let email = signupComponent.find('input[name="email"]')
+        email.simulate('change', {target: {name: "email",value: 'cons'}});
+        
+        let password = signupComponent.find('input[name="password"]')
+        password.simulate('change', {target: {name: "password",value: 'kla'}});
+
+        const form = signupComponent.find('form')
+		await form.simulate('submit',  { preventDefault: ()=>{}})
+        
+});
 
 })

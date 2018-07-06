@@ -1,8 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import MockAdapter from 'axios-mock-adapter';
-
-import ResetPassword from "../components/auth/resetpassword";
+import ResetPassword from "../components/Auth/ResetPassword";
 
 describe( "Resetpassword Component", () => {
     const wrapper = (shallow(< ResetPassword />));
@@ -23,20 +22,28 @@ describe( "Resetpassword Component", () => {
        expect(wrapper.state("new_password")).toEqual("john");
    });
   
-
-    // it("should render resetpassword form", () =>{
-    //     const title = <h3 className="text-dark text-center">Password Reset</h3>
-    //     expect(wrapper.contains(title).text()).toEqual(true);
-    // });
-
-    // it("renders email input", () =>{
-    //     expect(shallow(< ResetPassword />).find("#email").length).toEqual(1);
-    // });
-
-    // it("renders password input", () =>{
-    // expect(shallow(< ResetPassword />).find("#new_password").length).toEqual(1);
-    // });
-
+    it("should render resetpassword form", () =>{
+        const title = <h3 className="text-dark text-center">Password Reset</h3>
+        expect(wrapper.contains(title)).toEqual(true);
+    });
   
 })
+
+// describe("resetpassword component", () =>{
+//     const wrapper = mount (<ResetPassword />);
+//     wrapper.setState({authenticated:true})
+//     it('It handles submit', async ()=>{
+//         // const resetComponent = wrapper.find(ResetPassword)
+// 		let email = resetComponent.find('input[name="email"]')
+// 		email.simulate('change', {target: {name: "email",value: 'john@john.com'}});
+	
+// 		let password = searchComponent.find('input[name="password"]')
+//         password.simulate('change', {target: {name: "password",value: 'cons'}});
+        
+//         const form = searchComponent.find('form')
+// 		await form.simulate('submit',  { preventDefault: ()=>{}})
+        
+// });
+
+// })
 

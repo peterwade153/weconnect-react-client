@@ -1,8 +1,14 @@
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 import { Link } from "react-router-dom";
-import instance from "../../config";
+import { ToastContainer, toast } from 'react-toastify';
 import { LineSpinFadeLoader } from 'react-pure-loaders';
+import instance from "../../config";
+import Footer from "../Layout/Footer";
+
+/**
+ * Form for user login
+ *
+ */
 
 class Login extends React.Component{
     constructor(props){
@@ -34,18 +40,22 @@ class Login extends React.Component{
             // pick token from API and the user ID
             localStorage.setItem('Token', response.data.Token);
             localStorage.setItem('user_id', response.data.user_id);
+            localStorage.setItem('username', response.data.username);
 
             this.setState({
                 Token:response.data.Token,
                 user_id :response.data.user_id,
-                loading:false
-            });
+                });
+            // this.setState({loading:false});
             this.props.history.push("/businesses/");
             toast.success(response.data.Message);
+            console.log(response.data.Message);
+
         })
         .catch(error => {
             this.setState({loading:false});
             toast.error("Login Failed!, SignUp to create an account");
+            
         })
     };
     render(){
@@ -72,7 +82,7 @@ class Login extends React.Component{
         }
         return(
             <div>
-                <ToastContainer   hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
+                <ToastContainer hideProgressBar={true} autoClose={5000} position="top-right" pauseOnHover />
                 <nav className="navbar navbar-light navbar-toggleable-md bg-dark">
                    <span className="navbar-text" style={{marginLeft:'10%'}}>
                         <h2 className="text-light">WeConnect</h2><span className="text-light">
@@ -123,6 +133,7 @@ class Login extends React.Component{
                        </div>
                     </form>
                 </div>
+              < Footer />
             </div>
         )
     }

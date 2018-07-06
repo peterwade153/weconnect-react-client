@@ -3,8 +3,12 @@ import {Redirect, Link} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { LineSpinFadeLoader } from 'react-pure-loaders';
 import instance from "../../config";
-import Navbar from '../navbar';
+import Navbar from '../Layout/Navbar';
 
+/**
+ * Form for editing a business
+ *
+ */
 
 class EditBusiness extends React.Component{
     constructor(props){
@@ -100,7 +104,7 @@ class EditBusiness extends React.Component{
                                     <i className="fa fa-archive fa-fw" />
                                     </span>
                                 </div>
-                                <input value={business_name} name="business_name" className="form-control" 
+                                <input value={business_name} name="business_name" id="business_name" className="form-control" 
                                 onChange={e => this.onChange(e)} placeholder="Enter Business Name" />
                                 </div>
                             </div>
