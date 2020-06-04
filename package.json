@@ -1,9 +1,9 @@
 {
   "name": "weconnect4",
   "version": "0.1.0",
-   "engines": {
-     "node": "8.x",
-     "npm": "6.x"
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
   },
   "private": true,
   "dependencies": {

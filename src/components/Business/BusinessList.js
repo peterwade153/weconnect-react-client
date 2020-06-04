@@ -33,7 +33,7 @@ class Business extends React.Component{
     // pagination onchange page handler
     onChange = (page) => {
         this.setState({loading:true});
-        instance.get(`http://127.0.0.1:5000/api/v2/businesses?limit=${this.state.perpage}&page=${page}`)
+        instance.get(`https://weconect-api.herokuapp.com/api/v2/businesses?limit=${this.state.perpage}&page=${page}`)
         .then(response =>{
             this.setState({
                 businesses:response.data.Businesses,
@@ -52,7 +52,7 @@ class Business extends React.Component{
     // fetching businesses
     componentDidMount(){
         this.setState({loading:true});
-        instance.get(`http://127.0.0.1:5000/api/v2/businesses?limit=${this.state.perpage}&page=${this.state.current}`)
+        instance.get(`https://weconect-api.herokuapp.com/api/v2/businesses?limit=${this.state.perpage}&page=${this.state.current}`)
         .then(response => {
             this.setState({
                 businesses : response.data.Businesses,
